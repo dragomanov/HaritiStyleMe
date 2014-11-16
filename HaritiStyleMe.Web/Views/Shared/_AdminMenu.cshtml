@@ -1,0 +1,33 @@
+﻿@using Resources;
+
+<li class="dropdown">
+    <a href="" class="dropdown-toggle" id="ddAdmin" data-toggle="dropdown" role="button" aria-expanded="false">
+        @Strings.AdminMenuTitle
+        <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu navbar-nav navbar-inverse" role="menu" aria-labelledby="ddAdmin">
+        <li>
+            @Html.ActionLink(@Strings.AdminMenuCategories, "Index", "Categories",
+                new { Area = "Admin" }, new { role = "menuitem", tabindex = "-1" }
+            )
+        </li>
+        <li class="divider"></li>
+        <li>
+            @Html.ActionLink(@Strings.AdminMenuServices, "Index", "Services",
+                new { Area = "Admin" }, new { role = "menuitem", tabindex = "-1" }
+            )
+        </li>
+        <li class="divider"></li>
+        <li>
+            @Html.ActionLink(@Strings.AdminMenuTimesOff, "Index", "TimesOff",
+                new { Area = "Admin" }, new { role = "menuitem", tabindex = "-1" }
+            )
+        </li>
+        <li class="divider"></li>
+        <li>
+            @Html.ActionLink(@Strings.AdminMenuUsers, "Index", "Users",
+                new { Area = "Admin" }, new { role = "menuitem", tabindex = "-1" }
+            )
+        </li>
+    </ul>
+</li>

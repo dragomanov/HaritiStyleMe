@@ -1,0 +1,27 @@
+﻿@using Resources;
+
+<li class="dropdown">
+    <a href="" class="dropdown-toggle" id="ddEmployee" data-toggle="dropdown" role="button" aria-expanded="false">
+        @Strings.ManageMenuTitle
+        <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="ddEmployee">
+        <li>
+            @Html.ActionLink(@Strings.ManageMenuSchedule, "Index", "Schedule",
+                new { Area = "Employee" }, new { role = "menuitem", tabindex = "-1" }
+            )
+        </li>
+        <li class="divider"></li>
+        <li>
+            @Html.ActionLink(@Strings.ManageMenuAppointments, "Index", "Appointments",
+                new { Area = "Employee" }, new { role = "menuitem", tabindex = "-1" }
+            )
+        </li>
+        <li class="divider"></li>
+        <li>
+            @Html.ActionLink(@Strings.ManageMenuTimesOff, "Index", "TimesOff",
+                new { Area = "Employee" }, new { role = "menuitem", tabindex = "-1" }
+            )
+        </li>
+    </ul>
+</li>

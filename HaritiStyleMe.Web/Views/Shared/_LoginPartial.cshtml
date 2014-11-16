@@ -1,0 +1,27 @@
+﻿@using Microsoft.AspNet.Identity;
+@using HaritiStyleMe.Data;
+@using HaritiStyleMe.Web.Controllers;
+@using Resources;
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+        var username = HaritiStyleMeData.Data.Users.Find(User.Identity.GetUserId()).Name;
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink(Strings.LoginPartialHello + " " + @username, "Index", "Manage", routeValues: new { Area = "" }, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">@Strings.LoginPartialLogout</a></li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink(Strings.LoginPartialRegister, "Register", "Account", routeValues: new { Area = "" }, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink(Strings.LoginPartialLogin, "Login", "Account", routeValues: new { Area = "" }, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

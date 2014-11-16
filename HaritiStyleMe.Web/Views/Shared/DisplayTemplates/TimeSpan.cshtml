@@ -1,0 +1,16 @@
+﻿@model TimeSpan
+@using Resources;
+@{
+    string output = String.Empty;
+    if (Model.Hours > 0)
+    {
+        output = Model.Hours + "ч ";
+    }
+
+    if (Model.Minutes > 0)
+    {
+        output += Model.Minutes + "м";
+    }
+    
+    @output
+}
