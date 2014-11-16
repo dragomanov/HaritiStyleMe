@@ -1,4 +1,5 @@
 ﻿using HaritiStyleMe.Data;
+using HaritiStyleMe.Web.Common.Mapping;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,8 @@ namespace HaritiStyleMe.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            AutoMapperConfig.Execute();
             RolesConfig.RegisterRoles();
             AdminConfig.RegisterAdmin();
             //DataGenerator.SeedDatabase();

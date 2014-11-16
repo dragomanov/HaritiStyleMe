@@ -106,6 +106,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Book.
+        /// </summary>
+        internal static string BookButton {
+            get {
+                return ResourceManager.GetString("BookButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose a type of service.
+        /// </summary>
+        internal static string BookHeading {
+            get {
+                return ResourceManager.GetString("BookHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Category.
         /// </summary>
         internal static string CategoryName {
@@ -282,6 +300,15 @@ namespace Resources {
         internal static string TimeSpanHoursSuffix {
             get {
                 return ResourceManager.GetString("TimeSpanHoursSuffix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to m.
+        /// </summary>
+        internal static string TimeSpanMinutesSuffix {
+            get {
+                return ResourceManager.GetString("TimeSpanMinutesSuffix", resourceCulture);
             }
         }
         

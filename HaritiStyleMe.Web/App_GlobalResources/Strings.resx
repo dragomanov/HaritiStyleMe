@@ -132,6 +132,12 @@
   <data name="AdminMenuUsers" xml:space="preserve">
     <value>Users</value>
   </data>
+  <data name="BookButton" xml:space="preserve">
+    <value>Book</value>
+  </data>
+  <data name="BookHeading" xml:space="preserve">
+    <value>Choose a type of service</value>
+  </data>
   <data name="CategoryName" xml:space="preserve">
     <value>Category</value>
   </data>
@@ -191,6 +197,9 @@
   </data>
   <data name="TimeSpanHoursSuffix" xml:space="preserve">
     <value>h</value>
+  </data>
+  <data name="TimeSpanMinutesSuffix" xml:space="preserve">
+    <value>m</value>
   </data>
   <data name="UserMenuBook" xml:space="preserve">
     <value>Book</value>

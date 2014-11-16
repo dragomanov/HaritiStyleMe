@@ -132,6 +132,12 @@
   <data name="AdminMenuUsers" xml:space="preserve">
     <value>Потребители</value>
   </data>
+  <data name="BookButton" xml:space="preserve">
+    <value>Запиши час</value>
+  </data>
+  <data name="BookHeading" xml:space="preserve">
+    <value>Изберете вид услуга</value>
+  </data>
   <data name="CategoryName" xml:space="preserve">
     <value>Категория</value>
   </data>
@@ -188,6 +194,12 @@
   </data>
   <data name="Services" xml:space="preserve">
     <value>Услуги</value>
+  </data>
+  <data name="TimeSpanHoursSuffix" xml:space="preserve">
+    <value>ч</value>
+  </data>
+  <data name="TimeSpanMinutesSuffix" xml:space="preserve">
+    <value>м</value>
   </data>
   <data name="UserMenuBook" xml:space="preserve">
     <value>Запиши час</value>

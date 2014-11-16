@@ -4,12 +4,12 @@
     string output = String.Empty;
     if (Model.Hours > 0)
     {
-        output = Model.Hours + "ч ";
+        output = Model.Hours + Strings.TimeSpanHoursSuffix + " ";
     }
 
     if (Model.Minutes > 0)
     {
-        output += Model.Minutes + "м";
+        output += Model.Minutes + Strings.TimeSpanMinutesSuffix;
     }
     
     @output
