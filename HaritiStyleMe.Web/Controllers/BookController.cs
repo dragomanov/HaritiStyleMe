@@ -21,12 +21,11 @@ namespace HaritiStyleMe.Web.Controllers
         public ActionResult Index()
         {
             var categories = data.Categories.All();
-            ViewBag.Category = new SelectList(categories, "Id", "Name");
+            ViewBag.CategoryId = new SelectList(categories, "Id", "Name");
 
             return View(categories);
         }
 
-        [ChildActionOnly()]
         public ActionResult GetServiceItemsByCategoryId(int? categoryId)
         {
             IEnumerable<ServiceItemViewModel> services;

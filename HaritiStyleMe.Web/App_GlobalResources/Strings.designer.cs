@@ -115,6 +115,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        internal static string BookCategoryDefault {
+            get {
+                return ResourceManager.GetString("BookCategoryDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose a type of service.
         /// </summary>
         internal static string BookHeading {

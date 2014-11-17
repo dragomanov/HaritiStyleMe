@@ -287,6 +287,7 @@
     <Content Include="Areas\Admin\Views\Services\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Services\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Services\Index.cshtml" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\kendo\jquery.min.js" />
     <Content Include="Scripts\kendo\kendo.aspnetmvc.min.js" />
     <Content Include="Scripts\kendo\kendo.scheduler.min.js" />

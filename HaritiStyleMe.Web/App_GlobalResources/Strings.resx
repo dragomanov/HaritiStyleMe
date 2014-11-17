@@ -135,6 +135,9 @@
   <data name="BookButton" xml:space="preserve">
     <value>Book</value>
   </data>
+  <data name="BookCategoryDefault" xml:space="preserve">
+    <value>All</value>
+  </data>
   <data name="BookHeading" xml:space="preserve">
     <value>Choose a type of service</value>
   </data>

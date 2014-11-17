@@ -17,9 +17,5 @@ namespace HaritiStyleMe.Web.Models
         public decimal Price { get; set; }
 
         public TimeSpan Duration { get; set; }
-
-        public int CategoryId { get; set; }
-
-        public virtual Category Category { get; set; }
     }
 }

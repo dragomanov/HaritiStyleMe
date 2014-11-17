@@ -135,6 +135,9 @@
   <data name="BookButton" xml:space="preserve">
     <value>Запиши час</value>
   </data>
+  <data name="BookCategoryDefault" xml:space="preserve">
+    <value>Всички</value>
+  </data>
   <data name="BookHeading" xml:space="preserve">
     <value>Изберете вид услуга</value>
   </data>

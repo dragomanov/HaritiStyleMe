@@ -7,10 +7,24 @@
 <div class="jumbotron">
     <h2>@Strings.BookHeading</h2>
 
-    <div class="form-group">
-        <div class="col-md-10">
-            @Html.DropDownList("Category", null, htmlAttributes: new { @class = "form-control" })
+    @using (Ajax.BeginForm("GetServiceItemsByCategoryId", null,
+        new AjaxOptions
+        {
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "service-items"
+        },
+        new { id = "form" }))
+    {
+        <div class="form-group" style="height: 34px">
+            <div class="col-md-10">
+                @Html.DropDownList("CategoryId", null, Strings.BookCategoryDefault,
+                    htmlAttributes: new { @class = "form-control", @onchange = "$('#form').submit();" })
+            </div>
         </div>
+    }
+
+    <div class="row" id="service-items">
+
     </div>
 </div>
 
@@ -19,5 +33,6 @@
 }
 
 @section scripts {
+    @Scripts.Render("~/bundles/jqueryajax")
     @Scripts.Render("~/bundles/kendo")
 }
