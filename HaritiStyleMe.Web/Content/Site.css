@@ -22,3 +22,32 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.navbar-inverse {
+    background-color: #9954bb;
+    border-color: #884aa6;
+    background-image: linear-gradient(#ce84eb, #9954bb 50%, #884aa6);
+    border: 1px solid #783c96;
+}
+
+.btn-primary {
+    background-color: #9954bb;
+    border-color: #9954bb;
+    background-image: linear-gradient(#ba72c0, #884aa6 50%, #7e3f9d);
+    border: 1px solid #783c96;
+}
+
+    .btn-primary:hover {
+        background-color: #7e3f9d;
+        border-color: #783c96;
+        background-image: linear-gradient(#ba72c0, #9954bb 50%, #884aa6);
+        border: 1px solid #783c96;
+    }
+
+.dropdown-menu>li>a:hover {
+    background-color: #9954bb;
+}
+
+a {
+    color: #9954bb;
+}

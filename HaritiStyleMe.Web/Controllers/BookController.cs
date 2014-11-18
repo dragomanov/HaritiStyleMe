@@ -10,7 +10,6 @@ using System.Web.Mvc;
 
 namespace HaritiStyleMe.Web.Controllers
 {
-    [Authorize]
     public class BookController : BaseController
     {
         public BookController(IHaritiStyleMeData data)
@@ -29,19 +28,13 @@ namespace HaritiStyleMe.Web.Controllers
         public ActionResult GetServiceItemsByCategoryId(int? categoryId)
         {
             IEnumerable<ServiceItemViewModel> services;
-            if (categoryId == null)
+            var allServices = data.ServiceItems.All();
+            if (categoryId != null)
             {
-                services = data.ServiceItems.All()
-                    .Project()
-                    .To<ServiceItemViewModel>();
+                allServices = allServices.Where(s => s.CategoryId == categoryId);
             }
-            else
-            {
-                services = data.ServiceItems.All()
-                    .Where(s => s.CategoryId == categoryId)
-                    .Project()
-                    .To<ServiceItemViewModel>();
-            }
+
+            services = allServices.Project().To<ServiceItemViewModel>();
 
             return PartialView(services);
         }

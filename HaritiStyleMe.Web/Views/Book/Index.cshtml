@@ -4,7 +4,7 @@
     ViewBag.Title = Strings.UserMenuBook;
 }
 
-<div class="jumbotron">
+<div class="well">
     <h2>@Strings.BookHeading</h2>
 
     @using (Ajax.BeginForm("GetServiceItemsByCategoryId", null,
@@ -23,7 +23,7 @@
         </div>
     }
 
-    <div class="row" id="service-items">
+    <div id="service-items">
 
     </div>
 </div>

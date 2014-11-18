@@ -1,2 +1,3 @@
 ﻿@model Decimal
-@Model.ToString("0 лв")
+@using Resources;
+@Model.ToString("0 " + @Strings.CurrencySuffix)

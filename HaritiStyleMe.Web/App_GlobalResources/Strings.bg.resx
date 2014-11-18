@@ -147,6 +147,9 @@
   <data name="CloseHour" xml:space="preserve">
     <value>20:00</value>
   </data>
+  <data name="CurrencySuffix" xml:space="preserve">
+    <value>лв</value>
+  </data>
   <data name="HomeBook" xml:space="preserve">
     <value>Запиши час сега</value>
   </data>

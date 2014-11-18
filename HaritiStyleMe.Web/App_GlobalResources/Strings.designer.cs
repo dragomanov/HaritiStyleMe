@@ -151,6 +151,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to lv.
+        /// </summary>
+        internal static string CurrencySuffix {
+            get {
+                return ResourceManager.GetString("CurrencySuffix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Book now.
         /// </summary>
         internal static string HomeBook {
