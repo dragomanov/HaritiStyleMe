@@ -51,3 +51,7 @@ textarea {
 a {
     color: #9954bb;
 }
+
+    a:hover {
+        color: #9954bb;
+    }

@@ -24,7 +24,10 @@ namespace HaritiStyleMe.Web.Areas.Employee.Controllers
         // GET: Employee/Schedule
         public ActionResult Index()
         {
-            var appointments = db.Appointments.Include(a => a.Client).Include(a => a.Employee).Include(a => a.ServiceItem);
+            var appointments = db.Appointments
+                .Where(a => a.EmployeeId == CurrentUser.Id)
+                .OrderBy(a => a.Time)
+                .Include(a => a.ServiceItem);
             return View(appointments.ToList());
         }
 
@@ -35,7 +38,7 @@ namespace HaritiStyleMe.Web.Areas.Employee.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Appointment appointment = db.Appointments.Find(id);
+            Appointment appointment = db.Appointments.FirstOrDefault(t => t.Id == id && t.EmployeeId == CurrentUser.Id);
             if (appointment == null)
             {
                 return HttpNotFound();
@@ -79,13 +82,12 @@ namespace HaritiStyleMe.Web.Areas.Employee.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Appointment appointment = db.Appointments.Find(id);
+            Appointment appointment = db.Appointments.FirstOrDefault(t => t.Id == id && t.EmployeeId == CurrentUser.Id); ;
             if (appointment == null)
             {
                 return HttpNotFound();
             }
             ViewBag.ClientId = new SelectList(db.Users, "Id", "Name", appointment.ClientId);
-            ViewBag.EmployeeId = new SelectList(db.Users, "Id", "Name", appointment.EmployeeId);
             ViewBag.ServiceItemId = new SelectList(db.ServiceItems, "Id", "Name", appointment.ServiceItemId);
             return View(appointment);
         }
@@ -104,7 +106,6 @@ namespace HaritiStyleMe.Web.Areas.Employee.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.ClientId = new SelectList(db.Users, "Id", "Name", appointment.ClientId);
-            ViewBag.EmployeeId = new SelectList(db.Users, "Id", "Name", appointment.EmployeeId);
             ViewBag.ServiceItemId = new SelectList(db.ServiceItems, "Id", "Name", appointment.ServiceItemId);
             return View(appointment);
         }
@@ -116,7 +117,7 @@ namespace HaritiStyleMe.Web.Areas.Employee.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Appointment appointment = db.Appointments.Find(id);
+            Appointment appointment = db.Appointments.FirstOrDefault(t => t.Id == id && t.EmployeeId == CurrentUser.Id); ;
             if (appointment == null)
             {
                 return HttpNotFound();
@@ -129,7 +130,7 @@ namespace HaritiStyleMe.Web.Areas.Employee.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Appointment appointment = db.Appointments.Find(id);
+            Appointment appointment = db.Appointments.FirstOrDefault(t => t.Id == id && t.EmployeeId == CurrentUser.Id); ;
             db.Appointments.Remove(appointment);
             db.SaveChanges();
             return RedirectToAction("Index");

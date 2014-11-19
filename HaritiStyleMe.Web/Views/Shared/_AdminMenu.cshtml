@@ -5,7 +5,7 @@
         @Strings.AdminMenuTitle
         <span class="caret"></span>
     </a>
-    <ul class="dropdown-menu navbar-nav navbar-inverse" role="menu" aria-labelledby="ddAdmin">
+    <ul class="dropdown-menu" role="menu" aria-labelledby="ddAdmin">
         <li>
             @Html.ActionLink(@Strings.AdminMenuCategories, "Index", "Categories",
                 new { Area = "Admin" }, new { role = "menuitem", tabindex = "-1" }

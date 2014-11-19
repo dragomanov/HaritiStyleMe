@@ -24,7 +24,9 @@ namespace HaritiStyleMe.Web.Areas.Admin.Controllers
         // GET: Admin/Appointments
         public ActionResult Index()
         {
-            var appointments = db.Appointments.Include(a => a.Client).Include(a => a.Employee).Include(a => a.ServiceItem);
+            var appointments = db.Appointments
+                .OrderBy(a => a.Time)
+                .Include(a => a.ServiceItem);
             return View(appointments.ToList());
         }
 

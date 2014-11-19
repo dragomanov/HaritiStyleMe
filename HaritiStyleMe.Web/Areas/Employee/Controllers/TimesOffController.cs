@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using HaritiStyleMe.Data;
 using HaritiStyleMe.Models;
 using HaritiStyleMe.Data.Interfaces;
+using Microsoft.AspNet.Identity;
 
 namespace HaritiStyleMe.Web.Areas.Employee.Controllers
 {
@@ -24,7 +25,7 @@ namespace HaritiStyleMe.Web.Areas.Employee.Controllers
         // GET: Employee/TimesOff
         public ActionResult Index()
         {
-            var timeOffs = db.TimesOff.Include(t => t.Employee);
+            var timeOffs = db.TimesOff.Where(t => t.EmployeeId == CurrentUser.Id);
             return View(timeOffs.ToList());
         }
 
@@ -35,18 +36,20 @@ namespace HaritiStyleMe.Web.Areas.Employee.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TimeOff timeOff = db.TimesOff.Find(id);
+
+            TimeOff timeOff = db.TimesOff.FirstOrDefault(t => t.Id == id && t.EmployeeId == CurrentUser.Id);
+
             if (timeOff == null)
             {
                 return HttpNotFound();
             }
+
             return View(timeOff);
         }
 
         // GET: Employee/TimesOff/Create
         public ActionResult Create()
         {
-            ViewBag.EmployeeId = new SelectList(db.Users, "Id", "Name");
             return View();
         }
 
@@ -55,16 +58,16 @@ namespace HaritiStyleMe.Web.Areas.Employee.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Time,Duration,EmployeeId")] TimeOff timeOff)
+        public ActionResult Create([Bind(Include = "Id,Time,Duration")] TimeOff timeOff)
         {
             if (ModelState.IsValid)
             {
+                timeOff.EmployeeId = CurrentUser.Id;
                 db.TimesOff.Add(timeOff);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EmployeeId = new SelectList(db.Users, "Id", "Name", timeOff.EmployeeId);
             return View(timeOff);
         }
 
@@ -75,12 +78,14 @@ namespace HaritiStyleMe.Web.Areas.Employee.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TimeOff timeOff = db.TimesOff.Find(id);
+
+            TimeOff timeOff = db.TimesOff.FirstOrDefault(t => t.Id == id && t.EmployeeId == CurrentUser.Id);
+
             if (timeOff == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.EmployeeId = new SelectList(db.Users, "Id", "Name", timeOff.EmployeeId);
+
             return View(timeOff);
         }
 
@@ -108,11 +113,14 @@ namespace HaritiStyleMe.Web.Areas.Employee.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TimeOff timeOff = db.TimesOff.Find(id);
+
+            TimeOff timeOff = db.TimesOff.FirstOrDefault(t => t.Id == id && t.EmployeeId == CurrentUser.Id);
+
             if (timeOff == null)
             {
                 return HttpNotFound();
             }
+
             return View(timeOff);
         }
 
@@ -121,9 +129,10 @@ namespace HaritiStyleMe.Web.Areas.Employee.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            TimeOff timeOff = db.TimesOff.Find(id);
+            TimeOff timeOff = db.TimesOff.FirstOrDefault(t => t.Id == id && t.EmployeeId == CurrentUser.Id);
             db.TimesOff.Remove(timeOff);
             db.SaveChanges();
+
             return RedirectToAction("Index");
         }
 

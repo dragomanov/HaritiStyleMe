@@ -1,4 +1,12 @@
-﻿using System;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using HaritiStyleMe.Data;
+using HaritiStyleMe.Data.Interfaces;
+using HaritiStyleMe.Models;
+using HaritiStyleMe.Web.Models;
+using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -6,15 +14,10 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using HaritiStyleMe.Data;
-using HaritiStyleMe.Web.Models;
-using HaritiStyleMe.Data.Interfaces;
-using AutoMapper.QueryableExtensions;
-using AutoMapper;
-using HaritiStyleMe.Models;
 
 namespace HaritiStyleMe.Web.Controllers
 {
+    [Authorize]
     public class ScheduleController : BaseController
     {
         public ScheduleController(IHaritiStyleMeData data)
@@ -25,12 +28,51 @@ namespace HaritiStyleMe.Web.Controllers
         // GET: Schedule
         public ActionResult Index()
         {
-            Mapper.CreateMap<Appointment, ScheduleViewModel>()
-                .ForMember(dest => dest.Duration, opt => opt.MapFrom(src => src.ServiceItem.Duration));
-            var scheduleViewModels = this.data.Appointments.All().Project().To<ScheduleViewModel>().ToList();
-            scheduleViewModels.AddRange(this.data.TimesOff.All().Project().To<ScheduleViewModel>().ToList());
+            var scheduleViewModels = GetUnavailableTimes();
             return View(scheduleViewModels);
         }
+
+        public virtual JsonResult Read([DataSourceRequest] DataSourceRequest request)
+        {
+            return Json(data.Appointments.All().ToDataSourceResult(request));
+        }
+
+        public virtual JsonResult Destroy([DataSourceRequest] DataSourceRequest request, ScheduleViewModel task)
+        {
+            if (ModelState.IsValid)
+            {
+                //data.Appointments.Delete(task);
+            }
+
+            return Json(new[] { task }.ToDataSourceResult(request, ModelState));
+        }
+
+        public virtual JsonResult Create([DataSourceRequest] DataSourceRequest request, ScheduleViewModel task)
+        {
+            if (ModelState.IsValid)
+            {
+                //data.Appointments.Add(task);
+            }
+
+            return Json(new[] { task }.ToDataSourceResult(request, ModelState));
+        }
+
+        public virtual JsonResult Update([DataSourceRequest] DataSourceRequest request, ScheduleViewModel task)
+        {
+            if (ModelState.IsValid)
+            {
+                //data.Appointments.Update(task);
+            }
+
+            return Json(new[] { task }.ToDataSourceResult(request, ModelState));
+        }
+
+        //protected override void Dispose(bool disposing)
+        //{
+        //    taskService.Dispose();
+        //    meetingService.Dispose();
+        //    base.Dispose(disposing);
+        //}
 
         // GET: Schedule/Details/5
         public ActionResult Details(int? id)
@@ -72,8 +114,7 @@ namespace HaritiStyleMe.Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EmployeeId = new SelectList(data.Users.All(), "Id", "Name", scheduleViewModel.EmployeeId);
-            ViewBag.ServiceItemId = new SelectList(data.ServiceItems.All(), "Id", "Name", scheduleViewModel.ServiceItemId);
+            ViewBag.ServiceItemId = new SelectList(data.ServiceItems.All(), "Id", "Name", scheduleViewModel);
             return View(scheduleViewModel);
         }
 
@@ -92,7 +133,6 @@ namespace HaritiStyleMe.Web.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.EmployeeId = new SelectList(data.Users.All(), "Id", "Name", scheduleViewModel.EmployeeId);
             ViewBag.ServiceItemId = new SelectList(data.ServiceItems.All(), "Id", "Name", scheduleViewModel.ServiceItemId);
             return View(scheduleViewModel);
         }
@@ -111,7 +151,6 @@ namespace HaritiStyleMe.Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EmployeeId = new SelectList(data.Users.All(), "Id", "Name", scheduleViewModel.EmployeeId);
             ViewBag.ServiceItemId = new SelectList(data.ServiceItems.All(), "Id", "Name", scheduleViewModel.ServiceItemId);
             return View(scheduleViewModel);
         }
@@ -143,6 +182,28 @@ namespace HaritiStyleMe.Web.Controllers
             data.Appointments.Delete(appointment);
             data.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        private List<ScheduleViewModel> GetUnavailableTimes()
+        {
+            var today = DateTime.Now.Date;
+            var scheduleViewModels = this.data.Appointments.All()
+                .Where(a => a.Time >= today)
+                .Project()
+                .To<ScheduleViewModel>()
+                .ToList();
+
+            scheduleViewModels.AddRange(this.data.TimesOff.All()
+                .Where(a => a.Time >= DateTime.Now)
+                .Project()
+                .To<ScheduleViewModel>()
+                .ToList());
+
+            Mapper.CreateMap<Appointment, ScheduleViewModel>()
+                  .ForMember(dest => dest.Start, opt => opt.MapFrom(src => src.Time))
+                  .ForMember(dest => dest.End, opt => opt.MapFrom(src => src.Time + src.ServiceItem.Duration));
+
+            return scheduleViewModels;
         }
     }
 }

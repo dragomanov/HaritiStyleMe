@@ -24,7 +24,9 @@ namespace HaritiStyleMe.Web.Areas.Admin.Controllers
         // GET: Admin/TimesOff
         public ActionResult Index()
         {
-            var TimesOff = db.TimesOff.Include(t => t.Employee);
+            var TimesOff = db.TimesOff
+                .OrderBy(t => t.Time)
+                .Include(t => t.Employee);
             return View(TimesOff.ToList());
         }
 

@@ -8,6 +8,8 @@ namespace HaritiStyleMe.Web
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            bundles.IgnoreList.Clear();
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/kendo/jquery.min.js"));
 
@@ -19,6 +21,7 @@ namespace HaritiStyleMe.Web
 
             bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
                         "~/Scripts/kendo/kendo.aspnetmvc.min.js",
+                        "~/Scripts/kendo/kendo.timezones.min.js",
                         "~/Scripts/kendo/kendo.scheduler.*"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're

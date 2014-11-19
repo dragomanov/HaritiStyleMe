@@ -21,12 +21,6 @@
             @Html.DisplayNameFor(model => model.EmailConfirmed)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PasswordHash)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SecurityStamp)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.PhoneNumber)
         </th>
         <th>
@@ -44,9 +38,6 @@
         <th>
             @Html.DisplayNameFor(model => model.AccessFailedCount)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
         <th></th>
     </tr>
 
@@ -60,12 +51,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.EmailConfirmed)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PasswordHash)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SecurityStamp)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.PhoneNumber)
@@ -84,9 +69,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.AccessFailedCount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
