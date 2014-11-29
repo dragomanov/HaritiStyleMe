@@ -12,7 +12,7 @@ namespace HaritiStyleMe.Data.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed = true;
+            AutomaticMigrationDataLossAllowed = false;
         }
 
         protected override void Seed(HaritiStyleMeDbContext context)
@@ -21,7 +21,6 @@ namespace HaritiStyleMe.Data.Migrations
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data. E.g.
-
         }
     }
 }

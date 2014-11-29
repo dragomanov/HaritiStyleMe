@@ -45,6 +45,13 @@
     <Reference Include="AutoMapper.Net4">
       <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
     </Reference>
+    <Reference Include="DayPilot">
+      <HintPath>..\packages\DayPilot.4.1.264\lib\DayPilot.dll</HintPath>
+    </Reference>
+    <Reference Include="DayPilot.Web.Mvc, Version=7.7.5658.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\DayPilot.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Glimpse.Ado">
       <HintPath>..\packages\Glimpse.Ado.1.7.3\lib\net45\Glimpse.Ado.dll</HintPath>
     </Reference>
@@ -59,9 +66,6 @@
     </Reference>
     <Reference Include="Glimpse.Mvc5">
       <HintPath>..\packages\Glimpse.Mvc5.1.5.3\lib\net45\Glimpse.Mvc5.dll</HintPath>
-    </Reference>
-    <Reference Include="Kendo.Mvc">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\UI for ASP.NET MVC Q2 2014\wrappers\aspnetmvc\Binaries\Mvc5\Kendo.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Ninject">
@@ -244,7 +248,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Common\Extensions\ListExtensions.cs" />
     <Compile Include="Common\Extensions\PrincipleExtensions.cs" />
-    <Compile Include="Controllers\ScheduleController.cs" />
+    <Compile Include="Controllers\SchedulerController.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -260,25 +264,15 @@
     <Content Include="Content\bootstrap.theme.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\kendo\Bootstrap\editor.png" />
-    <Content Include="Content\kendo\Bootstrap\imagebrowser.png" />
-    <Content Include="Content\kendo\Bootstrap\indeterminate.gif" />
-    <Content Include="Content\kendo\Bootstrap\loading-image.gif" />
-    <Content Include="Content\kendo\Bootstrap\loading.gif" />
-    <Content Include="Content\kendo\Bootstrap\loading_2x.gif" />
-    <Content Include="Content\kendo\Bootstrap\markers.png" />
-    <Content Include="Content\kendo\Bootstrap\markers_2x.png" />
-    <Content Include="Content\kendo\Bootstrap\slider-h.gif" />
-    <Content Include="Content\kendo\Bootstrap\slider-v.gif" />
-    <Content Include="Content\kendo\Bootstrap\sprite.png" />
-    <Content Include="Content\kendo\Bootstrap\sprite_2x.png" />
-    <Content Include="Content\kendo\kendo.bootstrap.min.css" />
-    <Content Include="Content\kendo\kendo.bootstrap.mobile.min.css" />
-    <Content Include="Content\kendo\kendo.common-bootstrap.min.css" />
+    <Content Include="Content\Themes\areas.css" />
+    <Content Include="Content\Themes\areas\icons.png" />
+    <Content Include="Content\Themes\scheduler_white.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Libs\DayPilot.Web.Mvc.dll" />
+    <Content Include="Libs\DayPilot.Web.Mvc.xml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
@@ -289,14 +283,8 @@
     <Content Include="Areas\Admin\Views\Services\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Services\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Services\Index.cshtml" />
+    <Content Include="Scripts\DayPilot\daypilot-all.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="Scripts\kendo\jquery.min.js" />
-    <Content Include="Scripts\kendo\kendo.aspnetmvc.min.js" />
-    <Content Include="Scripts\kendo\kendo.scheduler.min.js" />
-    <Content Include="Scripts\kendo\kendo.scheduler.monthview.min.js" />
-    <Content Include="Scripts\kendo\kendo.scheduler.recurrence.min.js" />
-    <Content Include="Scripts\kendo\kendo.scheduler.view.min.js" />
-    <Content Include="Scripts\kendo\kendo.timezones.min.js" />
     <Content Include="Views\Shared\_UserMenu.cshtml" />
     <Content Include="Areas\Employee\Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_EmployeeMenu.cshtml" />
@@ -348,7 +336,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -391,11 +381,11 @@
     <Content Include="Views\Shared\DisplayTemplates\Decimal.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Boolean.cshtml" />
     <Content Include="Views\Book\GetServiceItemsByCategoryId.cshtml" />
-    <Content Include="Views\Schedule\Create.cshtml" />
-    <Content Include="Views\Schedule\Delete.cshtml" />
-    <Content Include="Views\Schedule\Details.cshtml" />
-    <Content Include="Views\Schedule\Edit.cshtml" />
-    <Content Include="Views\Schedule\Index.cshtml" />
+    <Content Include="Views\Scheduler\Create.cshtml" />
+    <Content Include="Views\Scheduler\Delete.cshtml" />
+    <Content Include="Views\Scheduler\Details.cshtml" />
+    <Content Include="Views\Scheduler\Edit.cshtml" />
+    <Content Include="Views\Scheduler\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -404,6 +394,7 @@
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Employee\Models\" />
     <Folder Include="Areas\Employee\Views\Shared\" />
+    <Folder Include="Content\Themes\scheduler_white\" />
     <Folder Include="Views\Categories\" />
   </ItemGroup>
   <ItemGroup>

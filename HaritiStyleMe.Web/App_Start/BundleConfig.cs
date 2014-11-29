@@ -11,18 +11,13 @@ namespace HaritiStyleMe.Web
             bundles.IgnoreList.Clear();
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/kendo/jquery.min.js"));
+                        "~/Scripts/jquery-1.10.2.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryajax").Include(
                         "~/Scripts/jquery.unobtrusive-ajax.min.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
-                        "~/Scripts/kendo/kendo.aspnetmvc.min.js",
-                        "~/Scripts/kendo/kendo.timezones.min.js",
-                        "~/Scripts/kendo/kendo.scheduler.*"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
@@ -37,9 +32,6 @@ namespace HaritiStyleMe.Web
                       "~/Content/bootstrap.css",
                       "~/Content/bootstrap.theme.css",
                       "~/Content/site.css"));
-
-            bundles.Add(new StyleBundle("~/Content/kendo").Include(
-                      "~/Content/kendo/kendo.*"));
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
