@@ -214,6 +214,7 @@
                 var times = GetAvailableTimesForService(employee, serviceItem, GetRandomDate(0, 30));
                 if (times.Count == 0)
                 {
+                    i--;
                     continue;
                 }
                 var time = times.GetRandom();

@@ -14,7 +14,7 @@ namespace HaritiStyleMe.Data
     public class HaritiStyleMeDbContext : IdentityDbContext<User>, IHaritiStyleMeDbContext
     {
         public HaritiStyleMeDbContext()
-            : base("SQLSERVER_CONNECTION_STRING", throwIfV1Schema: false)
+            : base("HaritiStyleMeConnection", throwIfV1Schema: false)
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<HaritiStyleMeDbContext, Configuration>());
         }
